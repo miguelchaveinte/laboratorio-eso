@@ -162,14 +162,15 @@ void ejecutaRedireccion(char * Comando){
 	char *cadenaRedireccion[MAXARGS];
 	int  i;
 
-	char caracterDolar[]="$";
+	char caracterDolar[]="$"; //MODIFICACION EXAMEN	
 	char comandoTime[1024]="time ";
 
 	bool tieneRedireccion=false;
 
 	
 	char *nuevoComando=(char *) malloc (sizeof(char)*MAXARGS);
-		
+	
+	//MODIFICACION EXAMEN	
 	//Si tiene el caracter dolar le quitamos y concatenamos con el string time
 	if(strstr(Comando,caracterDolar)!=NULL){
 		eliminarDolar(Comando);
@@ -178,6 +179,8 @@ void ejecutaRedireccion(char * Comando){
 	}
 	else//Sino copia el comando
 		strcpy(nuevoComando,Comando);
+	//*/
+	
 	
 	if(strstr(nuevoComando,Redireccion)!=NULL) tieneRedireccion=true;	// Comprobar que tieneel caracter > de redireccion
 
@@ -255,7 +258,8 @@ void ejecutaComando(char * Comando,char * fich, bool hayRedireccion){
 		if(strcmp(Argumentos[0],"cd")==0){
 			if(chdir(Argumentos[1])!=0) fprintf(stderr, "%s", error_message);// si hay un error al cambiar de directorio
 		}
-
+		
+		//MODIFICACION EXAMEN	
 		//EXAMEN: COMANDO HazDir que nos crea un directorio nuevo llamado DirectorioExamen
 		else if(strcmp(Argumentos[0],"HazDir")==0){
 			if(mkdir("./DirectorioExamen",0755)!=0) fprintf(stderr, "%s", error_message);
